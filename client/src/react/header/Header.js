@@ -1,6 +1,5 @@
 import React,{ PureComponent } from 'react';
 import Adder from './Adder.js';
-import HomeSection from './HomeSection.js';
 import UserSection from './UserSection.js';
 import Filters from './filters/Filters.js'
 
@@ -30,7 +29,7 @@ export default class Header extends PureComponent{
   render(){
     return(
       <div className="header">
-      <HomeSection />
+      <img className='logo' src={require('./img/logo.png')} alt=''/>
       <Adder />
       <UserSection logout = {this.logout} showLogin={this.showLogin}/>
       <div className = "headerSection">

@@ -26,8 +26,8 @@ export default class App extends Component{
     });
   }
 
-  onCloseEdit = () => {
-    this.setState({editShow:!this.state.showLoginForm})
+  onCloseLogin = () => {
+    this.setState({showLoginForm:!this.state.showLoginForm})
   }
 
   render(){
@@ -35,7 +35,7 @@ export default class App extends Component{
       <div>
       <Header filtersData={this.filtersData} toggleLogin={this.toggleLogin}/>
       <Tender filters={this.state.filters} style={{backgroundImage: `url(${Background})`}}/>
-      <Modal show={this.state.showLoginForm} onClose={this.onCloseEdit}>
+      <Modal show={this.state.showLoginForm} onClose={this.onCloseLogin}>
         <Login/>
       </Modal>
       </div>

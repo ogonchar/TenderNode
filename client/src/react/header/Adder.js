@@ -1,4 +1,6 @@
-import React, {  Component } from 'react';
+import React, {
+  Component
+} from 'react';
 import Modal from '../Hoc/Modal.js'
 import AddTender from '../tenders/AddTender.js'
 
@@ -7,15 +9,19 @@ export default class Adder extends Component {
     addShow: false
   }
 
-  addTender = (id) =>{
-    this.setState({addShow:!this.state.addShow})
+  addTender = (id) => {
+    this.setState({
+      addShow: !this.state.addShow
+    })
   }
   onCloseAdder = () => {
-    this.setState({addShow:!this.state.addShow})
+    this.setState({
+      addShow: !this.state.addShow
+    })
   }
 
   render() {
-    return (
+      return (
       <div className = "headerSec">
       <button className = "bthAddTender" onClick ={this.addTender}>Add tender</button>
       <Modal show={this.state.addShow} onClose={this.onCloseAdder}>

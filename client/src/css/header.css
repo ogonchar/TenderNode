@@ -1,8 +1,10 @@
+
+/* Logo  */
 .logo {
   float: left;
   height: 40px;
 }
-
+/* Header common style */
 .header {
   width: 100%;
   background-color: rgb(260, 260, 260);
@@ -12,14 +14,7 @@
   position: fixed;
   z-index: 3;
 }
-
-.home {
-  height: 100%;
-  display: inline-block;
-  border: none;
-  
-}
-
+/* Button for toggling filters panel styles */
 .filtersSectionToggle {
   width: 100%;
   height: 100%;
@@ -31,11 +26,12 @@
   .filtersSectionToggle:hover {
     background-image: linear-gradient(to top, #a3b3ed 0%, #6971c7 100%);
   }
-
+/* common styles for buttons on header panel */
 .headerSection {
   float: left;
   height: 40px;;
   width: 80px;
+  border: none;
 }
 
 .tenderIdInput {
@@ -67,4 +63,13 @@
 }
 .headerSec{
   display: inline-block;
+}
+.login{
+  background-color: rgb(28,31,168);
+}
+.logout{
+  background-color: rgb(223,83,88);
+}
+.reg{
+  background-color: rgb(260,260,260);
 }

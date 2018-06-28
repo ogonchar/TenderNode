@@ -15,14 +15,18 @@ export default class Login extends PureComponent {
     usernameValid: false,
     emailValid: false,
     passwordValid: false,
-    formValid: false
+    formValid: false,
+    errPassMes: '',
+    errEmailMes: '',
+    errUserMes: ''
   }
 
-  onChange = (e) => (
+  onChange = function (e) {
+    this.validateField(e.target.name,e.target.value)
     this.setState({
       [e.target.name]: e.target.value
     })
-  )
+  }
 
   submitLogin = (e) => (
     fetch('/auth', {
@@ -35,21 +39,23 @@ export default class Login extends PureComponent {
   )
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    this.validateField('password',this.state.password)
-    this.validateField('email',this.state.email)
-    this.validateField('username',this.state.username)
+
   }
 
   validateField(fieldName, value) {
+    //Checking email with standart email regex check. Message will show only if field does not empty
     if (fieldName === 'email'){
-        let emailValidLocal = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-        this.setState({emailValid: emailValidLocal ? true : false})
-        return
-      }else if (fieldName === 'password'){
-        this.setState({passwordValid: value.length >= 6 ? true : false})
-      }else if (fieldName === 'username'){
-        this.setState({usernameValid: (!value.includes(' ') && value.length>=5) ? true : false})
-      }
+      let emailValidLocal = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+      this.setState({emailValid: emailValidLocal ? true : false})
+      this.setState({errEmailMes: (!emailValidLocal || !value) ? 'Please insert correct email' : ''})
+    //Checking
+    }else if (fieldName === 'password'){
+      this.setState({passwordValid: value.length >= 6 ? true : false})
+      this.setState({errPassMes: (!(value.length >= 6) || !value) ? 'Password wrong':''})
+    }else if (fieldName === 'username'){
+      this.setState({usernameValid: (!value.includes(' ') && value.length>=5) ? true : false})
+      this.setState({errUserMes: ((!value.includes(' ') && value.length>=5) || !value) ? '':'Username wrong'})
+    }
   }
   validateForm() {
     this.setState({
@@ -73,9 +79,9 @@ export default class Login extends PureComponent {
 
     return(
       <div className="login-form">
-          <input name="username" placeholder="username" onChange= {(e) =>this.onChange(e)}style={styleUser}/><br/>
-          <input name="password" placeholder="Password" onChange={(e) =>this.onChange(e)} style={stylesPass}/><br/>
-          <input name="email" placeholder="email" onChange={(e) =>this.onChange(e)} style={stylesMail}/><br/>
+          <input name="username" placeholder="username" onChange= {(e) =>this.onChange(e)}style={styleUser}/><span>{this.state.errUserMes}</span><br/>
+          <input name="password" placeholder="Password" onChange={(e) =>this.onChange(e)} style={stylesPass}/><span>{this.state.errPassMes}</span><br/>
+          <input name="email" placeholder="email" onChange={(e) =>this.onChange(e)} style={stylesMail}/><span>{this.state.errEmailMes}</span><br/>
           <input name="passwordConf" placeholder="passwordConf" onChange={(e) =>this.onChange(e)}/><br/>
           <input name="logemail" placeholder="logemail" onChange={(e) =>this.onChange(e)}/><br/>
           <input name="logpassword" placeholder="logpassword" onChange={(e) =>this.onChange(e)}/><br/>
