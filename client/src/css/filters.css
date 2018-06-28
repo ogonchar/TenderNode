@@ -1,0 +1,67 @@
+
+.tdFilters {
+		border: 3px solid;
+		border-color: rgb(0,0,0);
+	}
+
+
+	.filtersSection{
+
+		width:100%;
+		position:fixed;
+		z-index: 2;
+	}
+
+	.filtersToggle{
+		height: 30px;
+		width:100%;
+ 		float: left;
+ 		padding: 0;
+		border: none;
+		color : lightgrey;
+	  background-color: #303030;
+		background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+ 		background-blend-mode: normal, lighten, soft-light;
+		}
+	.filtersToggle:hover {
+	  background-color: #313131;
+	  background-image: linear-gradient(to bottom, #7b7b7b, #2a2a2a);
+		}
+	.btnFilterConfim{
+		width:20%;
+		Height:30px;
+		float: left;
+		background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+		}
+	.filtersContainer{
+		position: relative;
+		Height:30px;
+		z-index: 9999;
+		width:20%;
+		margin:none;
+		float: left;
+		}
+	.dropdown-menu{
+		width:100%;
+		margin-top: 30px;
+		position: absolute;
+	    z-index: 9999;
+	    display: none;
+	    font-size: 20px;
+	    color: rgb(149, 153, 150);
+		float: left;
+		background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+		}
+	.priceInputs{
+		width: 45%;
+		border-radius: 3px;
+		}
+	.options{
+		height: 100%;
+		width:100%;
+		border: none;
+		color : lightgrey;
+		}
+		.buttonWrapper{
+			height: 30px;;
+		}

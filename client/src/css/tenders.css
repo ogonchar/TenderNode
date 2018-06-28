@@ -1,0 +1,92 @@
+body{
+   margin: 0px;
+   padding: 0px;
+   font-family: 'Roboto Slab', arial, serif;
+   font-size: 14px;
+}
+.back{
+  height:100vmax;
+  padding-top:70px;
+}
+
+
+.tendersContainer{
+  overflow:auto;
+  margin-bottom: 30px;
+  margin-left: 3%;
+  margin-right:3%
+  }
+
+.tbl{
+  width: 100%;
+  background-color: rgb(226, 226, 226,0.95);
+  color:black;
+  margin-bottom: 10px;
+  display:none;
+  }
+.tenderTableData {
+  text-align: center;
+  width:50%;
+  height: 30px;
+  border-bottom: 1px solid;
+  border-top: 1px solid;
+  border-color: rgb(224, 224, 224);
+  margin:25%;
+  }
+
+/* Tenders information blocks */
+.tendcont{
+      height: 60px;
+      text-align: center;
+      vertical-align: middle;
+      margin-bottom: 1px;
+  }
+  /* Div of tenders info */
+  .tend{
+    height:inherit;
+    border: none;
+    float:left;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  /* Blocks and buttons with tenders information */
+  .tendStageFill{border-radius: 5px 0px 0px 5px;width: 7%; background-color:rgb(158, 223, 169,0.95); font-size:11px;}
+  .tendStageCons{border-radius: 5px 0px 0px 5px;width: 7%; background-color:rgb(165, 195, 209,0.95);font-size:11px;}
+  .tendStageCompl{border-radius: 5px 0px 0px 5px;width: 7%; background-color: rgb(217, 168, 197,0.95);font-size:11px;}
+  .tendid{width: 15%; background-color: rgb(245, 245, 242,0.95); cursor: pointer;}.tendid:hover{background-color: rgb(245, 245, 242,0.9);}
+  .tendName{overflow: hidden; width: 30%;background-color: rgb(245, 242, 250,0.95); border-left: 1px solid rgb(260, 260, 260,0.6); cursor: pointer;}.tendName:hover{background-color: rgb(245, 242, 250,0.9);}
+  .tendCity{width: 12%;	background-color: rgb(245, 245, 242,0.95); border-left: 1px solid rgb(260, 260, 260,0.6);}
+  .tendPrice{width: 10%; 	background-color: rgb(245, 245, 242,0.95); border-left: 1px solid rgb(260, 260, 260,0.6);}
+  .tendInf{width: 16%; background-color: rgb(173, 179, 217,0.95); border-left: 1px solid rgb(260, 260, 260,0.6); cursor: pointer;}.tendInf:hover{background-color: rgb(173, 179, 217,0.9);}
+  .tendEdit{width: 9%; background-color: rgb(255, 173, 51,0.8);border-radius: 0px 5px 5px 0px; cursor: pointer;}
+
+.lower{
+  font-size: 10px;
+  }
+  .textcentering{
+    display: flex;
+    justify-content:center;
+    align-content:center;
+    flex-direction:column;
+  }
+
+  @media screen and (max-width: 1000px) {
+    .tendCity{
+      display:none;
+    }
+    .notification{
+      width: 50%;
+    }
+  .tendid{
+    width:27%
+  }
+
+}
+ @media (max-width:700px) and (min-width:10px) {
+  .tendPrice {
+      display:none;
+  }
+  .tendid{
+    width:37%
+  }
+ }
