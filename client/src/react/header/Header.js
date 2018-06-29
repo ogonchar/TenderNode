@@ -10,12 +10,12 @@ export default class Header extends PureComponent{
   };
 
   toggleFilters() {
-    this.setState({displayFilters:(this.state.displayFilters==="none") ? "block":"none"})
-
+    this.setState({displayFilters:
+      (this.state.displayFilters==="none") ? "block":"none"})
   }
 
-  filtersData = (val) => {
-      this.props.filtersData(val)
+  filtersData = (filterStage, filterSite) => {
+      this.props.filtersData({filterStage: filterStage, filterSite: filterSite})
     };
 
   showLogin = () => {

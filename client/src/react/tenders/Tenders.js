@@ -44,14 +44,19 @@ export default class Tender extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    const filters = this.props.filters;
+    const filterStage = this.props.filters.filterStage;
+    const filterSite = this.props.filters.filterSite;
     const tenders = this.state.initTenders;
-    if(prevProps.filters !==filters)
+    if(prevProps.filters.filterStage !==filterStage ||
+      prevProps.filters.filterSite !==filterSite)
       {
-        if(filters.length > 0) {
-           this.setState({currTenders: tenders.filter(tender => filters.includes(tender.stage)),
+        if(filterStage.length > 0 ||
+          filterSite.length > 0) {
+           this.setState({currTenders: tenders.filter(tender =>
+             (filterStage.length===0 || (filterStage.includes(tender.stage)&&filterStage.length > 0))
+             &&(filterSite.length===0 || (filterSite.includes(tender.site)&&filterSite.length > 0))),
          filtered: true})
-       }else if (filters.length === 0) {
+       }else if (filterStage.length === 0 && filterSite.length === 0) {
          this.setState({filtered: false})
        }
      }

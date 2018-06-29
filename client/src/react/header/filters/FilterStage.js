@@ -4,10 +4,10 @@ export default class FilterStage extends PureComponent {
 
   state = {
     display:"none",
-    checkedFilters:[],
-    checkedStyle: {filing:'rgb(170,70,70)',
-    consideration: 'rgb(170,70,70)',
-    complited: 'rgb(170,70,70)'}
+    checkedFilters:['filing','consideration','complited'],
+    checkedStyle: {filing:'rgb(11, 163, 96)',
+    consideration: 'rgb(11, 163, 96)',
+    complited: 'rgb(11, 163, 96)'}
   }
 
   toggleFiltersStage() {
@@ -22,13 +22,13 @@ export default class FilterStage extends PureComponent {
     if(!this.state.checkedFilters.includes(value)){
       this.setState({checkedFilters: [...this.state.checkedFilters, value]});
       let checked = {...this.state.checkedStyle};
-      checked[value] = 'rgb(70,70,70)';
+      checked[value] = 'rgb(11, 163, 96)';
       this.setState({checkedStyle:checked});
     }
     if(this.state.checkedFilters.includes(value)){
       this.setState({checkedFilters: this.state.checkedFilters.filter((i) => i !== value)});
       let checked = {...this.state.checkedStyle};
-      checked[value] = 'rgb(170,70,70)';
+      checked[value] = 'rgb(70,70,70)';
       this.setState({checkedStyle:checked});
     }
   }
