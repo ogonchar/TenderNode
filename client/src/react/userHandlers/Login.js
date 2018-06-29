@@ -78,14 +78,14 @@ export default class Login extends PureComponent {
     }
 
     return(
-      <div className="login-form">
-          <input name="username" placeholder="username" onChange= {(e) =>this.onChange(e)}style={styleUser}/><span>{this.state.errUserMes}</span><br/>
-          <input name="password" placeholder="Password" onChange={(e) =>this.onChange(e)} style={stylesPass}/><span>{this.state.errPassMes}</span><br/>
-          <input name="email" placeholder="email" onChange={(e) =>this.onChange(e)} style={stylesMail}/><span>{this.state.errEmailMes}</span><br/>
-          <input name="passwordConf" placeholder="passwordConf" onChange={(e) =>this.onChange(e)}/><br/>
-          <input name="logemail" placeholder="logemail" onChange={(e) =>this.onChange(e)}/><br/>
-          <input name="logpassword" placeholder="logpassword" onChange={(e) =>this.onChange(e)}/><br/>
-          <div className="tp">
+      <div className='login-form'>
+          <input name='username' placeholder='username' onChange= {(e) =>this.onChange(e)}style={styleUser}/><span>{this.state.errUserMes}</span><br/>
+          <input name='password' placeholder='Password' onChange={(e) =>this.onChange(e)} style={stylesPass}/><span>{this.state.errPassMes}</span><br/>
+          <input name='email' placeholder='email' onChange={(e) =>this.onChange(e)} style={stylesMail}/><span>{this.state.errEmailMes}</span><br/>
+          <input name='passwordConf' placeholder='passwordConf' onChange={(e) =>this.onChange(e)}/><br/>
+          <input name='logemail' placeholder='logemail' onChange={(e) =>this.onChange(e)}/><br/>
+          <input name='logpassword' placeholder='logpassword' onChange={(e) =>this.onChange(e)}/><br/>
+          <div className='tp'>
             <button onClick={this.submitLogin}>LOGIN NOW</button>
           </div>
 

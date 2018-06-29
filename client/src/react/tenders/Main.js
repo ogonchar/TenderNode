@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Table from './Table.js'
-import Section from './Section.js'
+import Table from './TendersContent/Table.js'
+import Section from './TendersContent/Section.js'
 import Modal from '../Hoc/Modal.js'
 import EditTender from './EditTender.js'
+import Tenders from './TendersContent/Tenders.js'
 
 export default class Tender extends Component {
   state = {
@@ -16,7 +17,7 @@ export default class Tender extends Component {
 
   componentDidMount() {
     let tenders;
-    // fetching full list of tenders from mongo
+    // fetching full list of tenders from server
     fetch('/api/getAllTenders')
       .then(res => res.json())
       .then(json => {
@@ -35,7 +36,7 @@ export default class Tender extends Component {
       .then(() => {
         let displayTables = new Map();
         for (let i = 0; i < tenders.length; i++) {
-          displayTables.set(tenders[i].id, "none");
+          displayTables.set(tenders[i].id, 'none');
         }
         this.setState({
           display: displayTables
@@ -65,10 +66,10 @@ export default class Tender extends Component {
    toggleTable(id) {
      let disp = this.state.display;
      for (var [key, value] of disp) {
-       if (key === id && value === "none") {
-         disp.set(key, "block")
+       if (key === id && value === 'none') {
+         disp.set(key, 'block')
        } else if (key === id){
-         disp.set(key, "none")
+         disp.set(key, 'none')
        }
      }
      this.setState({
@@ -89,7 +90,6 @@ export default class Tender extends Component {
 
   render() {
     let tenders = [];
-
     if(!this.state.filtered) {
       tenders = this.state.initTenders
     }else{
@@ -97,26 +97,16 @@ export default class Tender extends Component {
     }
     const display = this.state.display;
     return (
-      <div className="back" style={this.props.style}>
-      {tenders.map((i) => (
-        <div key = {i.id}
-        className = "tendersContainer" id = 'tendersFilingContainer'>
-        <Section
-          tend = {i}
-          onClickInfo = {(b) => this.toggleTable(i.id)}
-          onClickEdit = {(b) => this.editTender(i.id)}
+      <div>
+        <Tenders
+          tenders = {tenders}
+          onClickInfo = {this.toggleTable.bind(this)}
+          onClickEdit = {this.editTender}
+          display = {this.state.display}
         />
-
-        <div className = "tbl"
-        style = {{display: display.get(i.id)}}>
-        <Table tend = {i}/>
-        </div>
         <Modal show={this.state.editShow} onClose={this.onCloseEdit}>
           <EditTender tend={this.state.editTender}/>
         </Modal>
-        </div>
-      ))}
-
       </div>
     )
   }

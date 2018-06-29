@@ -1,5 +1,8 @@
 import React from 'react';
 import TableCell from './TableCell.js'
+
+/*The class is using for input in add and edit tender section*/
+
 const style = {
 
 }

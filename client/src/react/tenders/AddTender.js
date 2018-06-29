@@ -53,33 +53,33 @@ export default class NewTender extends Component{
   render(){
     return(
       <div>
-      <h2>Add tender</h2>
-      <TableRowIn name='id' func={this.onChange} placeholder='id'/>
-      <TableRowIn name='name' func={this.onChange} placeholder='name'/>
-      <TableCell>stage</TableCell>
-      <TableCell>
-        <select name="stage" value={this.state.stage} onChange={this.onChange}>
-        <option value="filing">filing</option>
-        <option value="consideration">consideration</option>
-        <option value="complited">complited</option>
-        </select>
-      </TableCell>
-      <TableRowIn name='contact' func={this.onChange} placeholder='contact'/>
-      <TableRowIn name='city' func={this.onChange} placeholder='city'/>
-      <TableRowIn name='price' func={this.onChange} placeholder='price'/>
-      <TableRowIn name='objectOfPurchase' func={this.onChange} placeholder='objectOfPurchase'/>
-      <TableRowIn name='procuring' func={this.onChange} placeholder='procuring'/>
-      <TableRowIn name='site' func={this.onChange} placeholder='site'/>
-      <TableCell>dateTo</TableCell>
-      <TableCell><DatePicker onChange={(e)=>this.onChange(e,'dateTo')}/></TableCell>
-      <TableCell>dateTender</TableCell>
-      <TableCell><DatePicker onChange={(e)=>this.onChange(e,'dateTender')}/></TableCell>
-      <TableRowIn name='procuringContract' func={this.onChange} placeholder='procuringContract'/>
-      <div className="footer">
-        <button onClick={this.addTender.bind(this)}>
-          Add
-        </button>
-      </div>
+        <h2>Add tender</h2>
+        <TableRowIn name='id' func={this.onChange} placeholder='id'/>
+        <TableRowIn name='name' func={this.onChange} placeholder='name'/>
+        <TableCell>stage</TableCell>
+        <TableCell>
+          <select name='stage' value={this.state.stage} onChange={this.onChange}>
+          <option value='filing'>filing</option>
+          <option value='consideration'>consideration</option>
+          <option value='complited'>complited</option>
+          </select>
+        </TableCell>
+        <TableRowIn name='contact' func={this.onChange} placeholder='contact'/>
+        <TableRowIn name='city' func={this.onChange} placeholder='city'/>
+        <TableRowIn name='price' func={this.onChange} placeholder='price'/>
+        <TableRowIn name='objectOfPurchase' func={this.onChange} placeholder='objectOfPurchase'/>
+        <TableRowIn name='procuring' func={this.onChange} placeholder='procuring'/>
+        <TableRowIn name='site' func={this.onChange} placeholder='site'/>
+        <TableCell>dateTo</TableCell>
+        <TableCell><DatePicker onChange={(e)=>this.onChange(e,'dateTo')}/></TableCell>
+        <TableCell>dateTender</TableCell>
+        <TableCell><DatePicker onChange={(e)=>this.onChange(e,'dateTender')}/></TableCell>
+        <TableRowIn name='procuringContract' func={this.onChange} placeholder='procuringContract'/>
+        <div className='footer'>
+          <button onClick={this.addTender.bind(this)}>
+            Add
+          </button>
+        </div>
       </div>
     )
   }

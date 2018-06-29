@@ -1,0 +1,30 @@
+body{
+   margin: 0px;
+   padding: 0px;
+   font-family: 'Roboto Slab', arial, serif;
+   font-size: 14px;
+}
+.back{
+  height:100vh;
+}
+
+@media screen and (max-width: 1000px) {
+    .tendCity{
+      display:none;
+    }
+    .notification{
+      width: 50%;
+    }
+  .tendid{
+    width:27%
+  }
+
+}
+@media (max-width:700px) and (min-width:10px) {
+  .tendPrice {
+      display:none;
+  }
+  .tendid{
+    width:37%
+  }
+ }
