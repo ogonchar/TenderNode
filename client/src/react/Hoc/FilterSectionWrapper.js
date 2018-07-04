@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { BREEZE, DBLUE, GREY}  from '../../const.js'
 
 export default (props) => {
   return (
@@ -41,9 +41,8 @@ width:'100%',
 float: 'left',
 padding: '0',
 border: 'none',
-color : 'lightgrey',
-backgroundColor: '#303030',
-backgroundImage: 'linear-gradient(to top, #09203f 0%, #537895 100%)'
+color : 'white',
+backgroundColor: GREY
 }
 const filtersContainer = {
 position: 'relative',
@@ -60,15 +59,15 @@ position: 'absolute',
 zIndex: '9999',
 display: 'none',
 fontSize: '20px',
-color: 'rgb(149, 153, 150)',
+color: BREEZE,
 float: 'left',
-backgroundImage: 'linear-gradient(to top, #09203f 0%, #537895 100%)'
+backgroundColor: DBLUE
 }
 const options = {
 height: '100%',
 width: '100%',
 border: 'none',
-color: 'lightgrey'
+color: BREEZE
 }
 const buttonWrapper= {
 height: '30px'

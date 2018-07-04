@@ -18,11 +18,11 @@ api.post('/addTender', (req, res) => {
   console.log(req.body);
 });
 api.put('/editTender', (req, res) => {
-  tenders.findOne({id:req.body.id}, function (err, doc){
-
+  console.log(req.body.tender._id);
   tenders.findByIdAndUpdate(
-    doc._id,
-    req.body,
+
+    req.body.tender._id,
+    req.body.tender,
     {new: true},
     (err, tend) => {
     // Handle any possible database errors
@@ -32,6 +32,6 @@ api.put('/editTender', (req, res) => {
     }
   )
 });
-});
+
 
 module.exports = api;

@@ -1,11 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+}
 body{
    margin: 0px;
    padding: 0px;
    font-family: 'Roboto Slab', arial, serif;
    font-size: 14px;
+   height: 100%;
 }
 .back{
   height:100vh;
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  flex: 1 0 auto;
+}
+.logo{
+  float: left;
+  height: 40px
+}
+.header{
+  width: 100%;
+  background-color:#b7b7b7d4;
+  overflow: auto;
+  height: 40px;
+  position: fixed;
+  z-index: 3;
 }
 
 @media screen and (max-width: 1000px) {
@@ -15,7 +37,7 @@ body{
     .notification{
       width: 50%;
     }
-  .tendid{
+    .tendid{
     width:27%
   }
 

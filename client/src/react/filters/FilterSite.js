@@ -1,5 +1,6 @@
 import React, {  PureComponent } from 'react';
 import FilterSectionWrapper from '../Hoc/FilterSectionWrapper.js'
+import {GREEN, DGREY}  from '../../const.js'
 
 export default class FilterSite extends PureComponent {
   // checkedStyle is responsible for changing style for chacked filter
@@ -7,13 +8,13 @@ export default class FilterSite extends PureComponent {
   state = {
     displayFilter: 'none',
     checkedFilters:['www.sberbank-ast.ru','www.rts.ru','www.mmvb.ru',''],
-    checkedStyle: {sberbank:'rgb(11, 163, 96)',
-    rts: 'rgb(11, 163, 96)',
-    mmvb: 'rgb(11, 163, 96)'}
+    checkedStyle: {sberbank: GREEN,
+    rts: GREEN,
+    mmvb: GREEN}
   }
 
   /* Pass current array of checked filters to parent*/
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate() {
       this.props.onUpdate(this.state.checkedFilters)
   }
 
@@ -36,16 +37,18 @@ export default class FilterSite extends PureComponent {
     if(!this.state.checkedFilters.includes(value)){
       this.setState({checkedFilters: [...this.state.checkedFilters, value]});
       let checked = {...this.state.checkedStyle};
-      console.log(value);
-      checked[value] = 'rgb(11, 163, 96)';
+      value = value.split('.')[1]
+      if (value.includes('-')) value= value.substring(0,value.indexOf('-'))
+      checked[value] = GREEN;
       this.setState({checkedStyle:checked});
     }
     if(this.state.checkedFilters.includes(value)){
       this.setState({checkedFilters:
         this.state.checkedFilters.filter((i) => i !== value)});
       let checked = {...this.state.checkedStyle};
-      console.log(value);
-      checked[value] = 'rgb(70,70,70)';
+      value = value.split('.')[1]
+      if (value.includes('-')) value = value.substring(0,value.indexOf('-'))
+      checked[value] = DGREY;
       this.setState({checkedStyle:checked});
     }
   }

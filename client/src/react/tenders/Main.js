@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import Table from './TendersContent/Table.js'
-import Section from './TendersContent/Section.js'
 import Modal from '../Hoc/Modal.js'
-import EditTender from './EditTender.js'
+import EditTender from '../Hoc/Api.js'
 import Tenders from './TendersContent/Tenders.js'
 
 export default class Tender extends Component {
@@ -18,7 +16,8 @@ export default class Tender extends Component {
   componentDidMount() {
     let tenders;
     // fetching full list of tenders from server
-    fetch('/api/getAllTenders')
+    //fetch('/api/getAllTenders')
+    fetch('http://localhost:3004/tenders')
       .then(res => res.json())
       .then(json => {
         for(let i in json){
@@ -28,7 +27,7 @@ export default class Tender extends Component {
         this.setState({
           initTenders: json
         })
-
+        this.props.tenders(json)
         tenders = json
       })
       //Necessery for right table dropping activity
@@ -95,7 +94,6 @@ export default class Tender extends Component {
     }else{
       tenders = this.state.currTenders
     }
-    const display = this.state.display;
     return (
       <div>
         <Tenders
@@ -104,8 +102,20 @@ export default class Tender extends Component {
           onClickEdit = {this.editTender}
           display = {this.state.display}
         />
-        <Modal show={this.state.editShow} onClose={this.onCloseEdit}>
-          <EditTender tend={this.state.editTender}/>
+        <Modal 
+          name = 'Edit Tender'
+          show={this.state.editShow} 
+          onClose={this.onCloseEdit}
+          backgroundColor='lightgrey'
+          width='450px'
+          height= '600px'
+        >
+          <EditTender
+            name = 'Edit Tender'
+            tender = {this.state.editTender} 
+            onClose = {this.onCloseEdit}
+            method='PUT'
+          />
         </Modal>
       </div>
     )

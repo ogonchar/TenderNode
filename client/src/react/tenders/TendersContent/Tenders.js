@@ -1,7 +1,7 @@
 import React from 'react';
-import TableCell from '../../Hoc/TableCell.js'
 import Section from './Section.js'
 import Table from './Table.js'
+import { GREY}  from '../../../const.js'
 
 const styleMainDiv = {
   paddingTop: '75px'
@@ -17,9 +17,8 @@ export default (props) => {
             onClickInfo = {(b) => props.onClickInfo(i.id)}
             onClickEdit = {(b) => props.onClickEdit(i.id)}
           />
-          <div style = {Object.assign({}, {display: props.display.get(i.id)}
-            , tbl)}>
-          <Table tend = {i}/>
+          <div style = {Object.assign({}, tbl)}>
+          <Table tend = {i} display = {props.display.get(i.id)}/>
           </div>
         </div>
       ))}
@@ -35,7 +34,8 @@ const tendersContainer = {
 }
 const tbl = {
   width: '100%',
-  backgroundColor: 'rgb(226, 226, 226,0.95)',
+  backgroundColor: GREY,
   color:'black',
-  marginBottom: '10px'
+  marginBottom: '10px',
+  borderRadius: '4px'
 }

@@ -1,5 +1,6 @@
 import React, {  PureComponent } from 'react';
 import FilterSectionWrapper from '../Hoc/FilterSectionWrapper.js'
+import {GREEN,DGREY} from '../../const.js'
 
 export default class FilterStage extends PureComponent {
   // checkedStyle is responsible for changing style for chacked filter
@@ -7,16 +8,16 @@ export default class FilterStage extends PureComponent {
   state = {
     displayFilter:'none',
     checkedFilters:['filing','consideration','complited',],
-    checkedStyle: {filing:'rgb(11, 163, 96)',
-    consideration: 'rgb(11, 163, 96)',
-    complited: 'rgb(11, 163, 96)'}
+    checkedStyle: {filing:GREEN,
+    consideration: GREEN,
+    complited: GREEN}
   }
 
   toggleFiltersStage() {
     this.setState({displayFilter: (this.state.displayFilter==='none') ? 'block' : 'none'})
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate() {
       this.props.onUpdate(this.state.checkedFilters)
   }
 
@@ -31,14 +32,14 @@ export default class FilterStage extends PureComponent {
     if(!this.state.checkedFilters.includes(value)){
       this.setState({checkedFilters: [...this.state.checkedFilters, value]});
       let checked = {...this.state.checkedStyle};
-      checked[value] = 'rgb(11, 163, 96)';
+      checked[value] = GREEN;
       this.setState({checkedStyle:checked});
     }
     if(this.state.checkedFilters.includes(value)){
       this.setState({checkedFilters: this.state.checkedFilters.filter((i) =>
         i !== value)});
       let checked = {...this.state.checkedStyle};
-      checked[value] = 'rgb(70,70,70)';
+      checked[value] = DGREY;
       this.setState({checkedStyle:checked});
     }
   }
@@ -53,8 +54,6 @@ render(){
       toggleFilters = {this.toggleFiltersStage.bind(this)}
       checkingFilterHandler = {this.checkingFilterHandler.bind(this)}
       />
-
-
   )
 }
 }

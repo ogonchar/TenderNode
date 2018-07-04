@@ -35,7 +35,7 @@ export default class Adder extends PureComponent {
 }
 
 const filtersSection = {
-  marginTop: '40px',
+  marginTop: '22px',
 
   width:'100%',
   position:'fixed',

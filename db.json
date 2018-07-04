@@ -1,0 +1,49 @@
+{ "tenders" :
+  [
+  {
+    "_id" : "5b2f93c843699a14802bc049",
+    "id" : "01038123",
+    "stage" : "filing",
+    "contact" : "НЕРЧИНСКОЕ МУНИЦИПАЛЬНОГО РАЙОНА",
+    "city" : "Нерчинск",
+    "price" : "1493",
+    "objectOfPurchase" : "Выполнение работ по ремонту ",
+    "procuring" : "123",
+    "site" : "www.sberbank-ast.ru",
+    "dateTo" : "2018-06-30T00:00:00.000Z",
+    "dateTender" : "2018-07-19T00:00:00.000Z",
+    "procuringContract" : "45613",
+    "__v" : 0
+},
+{
+    "_id" : "5b2f97b94c6c2744b84eccb0",
+    "id" : "01118",
+    "stage" : "consideration",
+    "contact" : "НЕРЧИНСКОЕ МУНИЦИПАЛЬНОГО РАЙОНА",
+    "city" : "Нерчинск",
+    "price" : "1493000",
+    "objectOfPurchase" : "Выполнение работ по ремонту ",
+    "procuring" : "54235",
+    "site" : "www.sberbank-ast.ru",
+    "dateTo" : "2018-06-27T00:00:00.000Z",
+    "dateTender" : "2018-07-18T00:00:00.000Z",
+    "procuringContract" : "45613215",
+    "__v" : 0
+},
+{
+    "_id" : "5b3485ae75698a575047d6cc",
+    "id" : "adfvj",
+    "stage" : "complited",
+    "contact" : "advlkav",
+    "city" : "advad",
+    "price" : "123",
+    "objectOfPurchase" : "sdvdv",
+    "procuring" : "12",
+    "site" : "",
+    "dateTo" : "2018-07-10T21:00:00.000Z",
+    "dateTender" : "2018-07-27T00:00:00.000Z",
+    "procuringContract" : " 323 504,00",
+    "__v" : 0
+}
+]
+}

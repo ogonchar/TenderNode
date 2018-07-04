@@ -1,45 +1,67 @@
-import React,{ PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import Adder from './Adder.js';
-import UserSection from './UserSection.js';
+import Modal from '../Hoc/Modal.js'
+import Login from './userHandlers/Login.js'
+import Calendar from '../calendar/Calendar.js'
+import Filters from '../filters/Filters.js'
+import HeaderButtons from './HeaderButtons.js'
+import { GREY } from '../../const.js'
 
-export default (props) => {
+export default class Header extends PureComponent {
 
-    return(
-      <div style = {header}>
-        <img style = {logo} src={require('../../img/logo.png')} alt=''/>
-        <Adder />
-        <UserSection logout = {props.logout} showLogin={props.toggleLogin}/>
-        <div style = {headerSection}>
-          <button style = {filtersSectionToggle}
-            onClick={() => props.toggleFilters()}>Фильтры</button>
-        </div>
+  state = {
+    addShow: false,
+    showLoginForm: false,
+    ShowFilters: false,
+    showCalendar: false
+  }
+
+  toggleSmf = (param) => {
+    this.setState({
+      [param]: !this.state[param]
+    })
+  }
+
+  logout = () => {
+    fetch('/logout', { method: 'GET' })
+  }
+
+  render() {
+    return (
+      <div className='header'>
+        <img className='logo' src={require('../../img/logo.png')} alt='' />
+        <HeaderButtons
+          logout={this.logout}
+          toggleSmf={(param) => this.toggleSmf(param)}
+        />
+        <Adder
+          show={this.state.addShow}
+          toggleSmf={(param) => this.toggleSmf(param)}
+        />
+        <Filters
+          filtersData={this.props.filtersData}
+          ShowFilters={this.state.ShowFilters}
+        />
+        <Modal
+          name='login'
+          show={this.state.showLoginForm}
+          backgroundColor={GREY}
+          width='500px'
+          height='350px'
+        >
+          <Login
+            onClose={(param) => this.toggleSmf(param)}
+          />
+        </Modal>
+        <Modal
+          show={this.state.showCalendar}
+        >
+          <Calendar
+            toggleSmf={(param) => this.toggleSmf(param)}
+            tenders={this.props.tenders}
+          />
+        </Modal>
       </div>
     )
-}
-const header = {
-  width: '100%',
-  backgroundColor: 'rgb(260, 260, 260)',
-  backgroundColor: 'rgba(260, 260, 260, 0.5)',
-  overflow: 'auto',
-  height: '40px',
-  position: 'fixed',
-  zIndex: '3',
-}
-const logo = {
-  float: 'left',
-  height: '40px'
-}
-const headerSection = {
-  float: 'left',
-  height: '40px',
-  width: '80px',
-  border: 'none'
-}
-const filtersSectionToggle = {
-  width: '100%',
-  height: '100%',
-  border: 'none',
-  float: 'left',
-  backgroundImage: 'linear-gradient(to top, #a3bded 0%, #6991c7 100%)',
-  color: 'lightgrey'
+  }
 }

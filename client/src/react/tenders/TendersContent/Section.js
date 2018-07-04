@@ -19,6 +19,7 @@ export default ({tend, onClickInfo, onClickEdit}) =>
           type='button' onClick={onClickEdit} >Edit</div>
       </div>
     )
+    
 const tendcont = {
   height: '60px',
   textAlign: 'center',

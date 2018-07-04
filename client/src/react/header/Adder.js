@@ -1,34 +1,33 @@
 import React, {Component} from 'react';
 import Modal from '../Hoc/Modal.js'
-import AddTender from '../tenders/AddTender.js'
+import AddTender from '../Hoc/Api.js'
+import {GREY}  from '../../const.js'
 
 /*The class contain button and form for adding tender to server*/
 
 export default class Adder extends Component {
 
   state = {
-    addShow: false
-  }
-
-  toggleAddForm = (id) => {
-    this.setState({
-      addShow: !this.state.addShow
-    })
-  }
-
-  onCloseAdder = () => {
-    this.setState({
-      addShow: !this.state.addShow
-    })
+    tender: {id:'',contact:'',city:'',price:'',objectOfPurchase:'',procuring:'',
+      site:'',procuringContract:'', dateTo: new Date(), dateTender: new Date()
+    }
   }
 
   render() {
       return (
       <div style = {headerSec}>
-        <button style={bthAddTender} onClick ={this.toggleAddForm}>
-          Add tender</button>
-        <Modal show={this.state.addShow} onClose={this.onCloseAdder}>
-          <AddTender/>
+        <Modal 
+          name = 'Add tender'
+          show = {this.props.show} 
+          backgroundColor={GREY}
+          height = '560px'
+          width = '450px'
+        >
+          <AddTender
+            onClose={() => this.props.toggleSmf('addShow')}
+            tender = {this.state.tender}
+            method ={'POST'}
+          />
         </Modal>
       </div>)
     }
