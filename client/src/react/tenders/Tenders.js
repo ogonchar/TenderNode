@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
-import Table from './Table.js'
-import Section from './Section.js'
-import Modal from '../Hoc/Modal.js'
-import EditTender from './EditTender.js'
+import Modal from '../HocAndTemplates/Modal.js'
+import EditTender from '../HocAndTemplates/Api.js'
+import Tenders from './parts/TendersBody.js'
+
+/* Class render area with all tender blocks */
 
 export default class Tender extends Component {
+  
+  /* 
+    * Init Tenders which fetched from server 
+    * Current are filtered one 
+    * Display is a map with corresponding IDs of tables of additional 
+    * info about tenders and boolean for showing it or not
+    * Filtered undicate if any filters are chosen
+    * EditShow bollean for render modal window with edit tender option or not 
+    * Edit tender represent Id of tender user choose to edit
+   */
+  
   state = {
     initTenders: [],
     currTenders: [],
@@ -16,8 +28,9 @@ export default class Tender extends Component {
 
   componentDidMount() {
     let tenders;
-    // fetching full list of tenders from mongo
-    fetch('/api/getAllTenders')
+    // fetching full list of tenders from server
+    //fetch('/api/getAllTenders')
+    fetch('/api/tenders/getAllTenders')
       .then(res => res.json())
       .then(json => {
         for(let i in json){
@@ -27,7 +40,7 @@ export default class Tender extends Component {
         this.setState({
           initTenders: json
         })
-
+        this.props.tenders(json)
         tenders = json
       })
       //Necessery for right table dropping activity
@@ -35,7 +48,7 @@ export default class Tender extends Component {
       .then(() => {
         let displayTables = new Map();
         for (let i = 0; i < tenders.length; i++) {
-          displayTables.set(tenders[i].id, "none");
+          displayTables.set(tenders[i].id, 'none');
         }
         this.setState({
           display: displayTables
@@ -43,27 +56,38 @@ export default class Tender extends Component {
       })
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    const filters = this.props.filters;
+  /*
+    * function  receives fiilters values and change 
+    * current tenders list acoording to chosen oprions
+  */
+
+  componentDidUpdate(prevProps) {
+    const filterStage = this.props.filters.filterStage;
+    const filterSite = this.props.filters.filterSite;
     const tenders = this.state.initTenders;
-    if(prevProps.filters !==filters)
+    if(prevProps.filters.filterStage !==filterStage ||
+      prevProps.filters.filterSite !==filterSite)
       {
-        if(filters.length > 0) {
-           this.setState({currTenders: tenders.filter(tender => filters.includes(tender.stage)),
+        if(filterStage.length > 0 ||
+          filterSite.length > 0) {
+           this.setState({currTenders: tenders.filter(tender =>
+             (filterStage.length===0 || (filterStage.includes(tender.stage)&&filterStage.length > 0))
+             &&(filterSite.length===0 || (filterSite.includes(tender.site)&&filterSite.length > 0))),
          filtered: true})
-       }else if (filters.length === 0) {
+       }else if (filterStage.length === 0 && filterSite.length === 0) {
          this.setState({filtered: false})
        }
      }
    }
 
+   //Showing table for tender with corresponding IDs
    toggleTable(id) {
      let disp = this.state.display;
      for (var [key, value] of disp) {
-       if (key === id && value === "none") {
-         disp.set(key, "block")
+       if (key === id && value === 'none') {
+         disp.set(key, 'block')
        } else if (key === id){
-         disp.set(key, "none")
+         disp.set(key, 'none')
        }
      }
      this.setState({
@@ -71,6 +95,7 @@ export default class Tender extends Component {
      })
    }
 
+   // open modal for editing tender
    editTender = (id) =>{
      this.setState({
        editShow:!this.state.editShow,
@@ -84,34 +109,37 @@ export default class Tender extends Component {
 
   render() {
     let tenders = [];
-
     if(!this.state.filtered) {
       tenders = this.state.initTenders
     }else{
       tenders = this.state.currTenders
     }
-    const display = this.state.display;
     return (
-      <div className="back" style={this.props.style}>
-      {tenders.map((i) => (
-        <div key = {i.id}
-        className = "tendersContainer" id = 'tendersFilingContainer'>
-        <Section
-          tend = {i}
-          onClickInfo = {(b) => this.toggleTable(i.id)}
-          onClickEdit = {(b) => this.editTender(i.id)}
+      <div>
+        <Tenders
+          tenders = {tenders}
+          onClickInfo = {this.toggleTable.bind(this)}
+          onClickEdit = {this.editTender}
+          display = {this.state.display}
         />
-
-        <div className = "tbl"
-        style = {{display: display.get(i.id)}}>
-        <Table tend = {i}/>
-        </div>
-        <Modal show={this.state.editShow} onClose={this.onCloseEdit}>
-          <EditTender tend={this.state.editTender}/>
+        <Modal 
+          name = 'Edit Tender'
+          show={this.state.editShow} 
+          onClose={this.onCloseEdit}
+          backgroundColor='lightgrey'
+          width='450px'
+          height= '600px'
+          margin='0 auto'
+        >
+          <EditTender
+            name = 'Edit Tender'
+            tender = {this.state.editTender} 
+            onClose = {this.onCloseEdit}
+            method='PUT'
+            link ='/api/tenders/editTender'
+            deleteOption = 'true'
+          />
         </Modal>
-        </div>
-      ))}
-
       </div>
     )
   }

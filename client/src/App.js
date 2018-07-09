@@ -1,43 +1,61 @@
-import "./css/header.css";
-import "./css/filters.css";
-import "./css/tenders.css";
+import React, {Component} from 'react';
 
+import './css/main.css';
+import './App.css';
 import Background from './img/back3.jpg'
 
-import React, {Component} from 'react';
-import Tender from './react/tenders/Tenders.js';
+import Tenders from './react/tenders/Tenders.js';
 import Header from './react/header/Header.js';
-import Modal from './react/Hoc/Modal.js'
-import Login from './react/userHandlers/Login.js'
+import Footer from './react/Footer/Footer.js'
 
 export default class App extends Component{
 
+  /* 
+    * Filters are fetching from header with function filterData 
+    * and represent array of string for filtering tenders in tenders block
+    * 
+    * Tenders are fetching from server by Tenders.js and then transfering to 
+    * calendar to display important dates
+  */
+
   state = {
     filters: [],
-    showLoginForm:false
+    tenders: []
   }
   filtersData=(filters)=>{
     this.setState({filters: filters})
   }
 
-  toggleLogin = () => {
+  getTenders = (tenders) => {
     this.setState({
-      showLoginForm: !this.state.showLoginForm
+      tenders
     });
   }
-
-  onCloseEdit = () => {
-    this.setState({editShow:!this.state.showLoginForm})
-  }
-
+  
   render(){
+
+    /* 
+      * Header responsible for every modal windows and buttons for 
+      * toggling except editing tender, this is rendered in tenders 
+      * Tenders responsible for rendering main window with tenders
+    */
+   
     return(
-      <div>
-      <Header filtersData={this.filtersData} toggleLogin={this.toggleLogin}/>
-      <Tender filters={this.state.filters} style={{backgroundImage: `url(${Background})`}}/>
-      <Modal show={this.state.showLoginForm} onClose={this.onCloseEdit}>
-        <Login/>
-      </Modal>
+      <div 
+        className='back' 
+        style={{backgroundImage: `url(${Background})` }}
+      >
+        <div className='content'> 
+          <Header
+            filtersData={this.filtersData}
+            tenders = {this.state.tenders} 
+          />
+          <Tenders
+            tenders = {this.getTenders}
+            filters={this.state.filters}
+          />
+        </div>
+        <Footer/>
       </div>
     )
   }
