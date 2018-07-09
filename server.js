@@ -1,13 +1,11 @@
 let express = require('express');const mongoose = require('mongoose');
-let tenders = require('./model/tenderSchema.js')
 let app = express();
 let port = process.env.PORT || 5000;
 let bodyParser = require('body-parser')
-let router = require('router')
 let session = require('express-session');
 let routes = require('./routes/router');
-let api = require('./routes/api');
-
+let apiTenders = require('./routes/apiTenders');
+let apiReminders = require('./routes/apiReminders');
 
 let MongoStore = require('connect-mongo')(session);
 
@@ -27,6 +25,7 @@ app.use(session({
 }));
 
 app.use('/', routes);
-app.use('/api', api);
+app.use('/api/tenders', apiTenders);
+app.use('/api/reminders', apiReminders);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

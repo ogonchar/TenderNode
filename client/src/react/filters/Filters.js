@@ -1,6 +1,6 @@
 import React, {  PureComponent } from 'react';
-import FilterStage from './FilterStage.js';
-import FilterSite from './FilterSite.js';
+import FilterStage from './parts/FilterStage.js';
+import FilterSite from './parts/FilterSite.js';
 export default class Adder extends PureComponent {
 
   state ={
@@ -19,7 +19,7 @@ export default class Adder extends PureComponent {
   };
 
   /* Transfer gathered value to App throught Header */
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate() {
     this.props.filtersData({filterStage: this.state.filterStage,
       filterSite: this.state.filterSites})
   };
@@ -35,8 +35,7 @@ export default class Adder extends PureComponent {
 }
 
 const filtersSection = {
-  marginTop: '22px',
-
+  marginTop: '42px',
   width:'100%',
   position:'fixed',
   zIndex: '2'

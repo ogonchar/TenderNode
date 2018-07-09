@@ -1,5 +1,5 @@
 import React from 'react'
-import TableCell from '../Hoc/TableCell.js'
+import TableCell from '../HocAndTemplates/TableCell.js'
 import {DGREY}  from '../../const.js'
 
 export default (props) => {

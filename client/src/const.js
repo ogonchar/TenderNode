@@ -9,8 +9,9 @@ const DBLUE = '#444463f5'
 const DGREY = '#5b5b5ff5'
 const YELLOW = '#ffad33cc'
 const GREY = '#b7b7b7f7'
+const RED = '#ff0000b3'
 
-export {ORANGE, BLUE, BREEZE, DANGER, GREEN, DBLUE ,DGREY, YELLOW, GREY} 
+export {ORANGE, BLUE, BREEZE, DANGER, GREEN, DBLUE ,DGREY, YELLOW, GREY, RED} 
 
 const SIZE = 100
 
